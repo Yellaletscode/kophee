@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:kophee/core/constants/constants.dart';
 import 'package:kophee/feature/screens/mobile_screen.dart';
-import 'package:kophee/feature/screens/product_details.dart';
+import 'package:kophee/feature/screens/shoe_detail.dart';
 import 'package:kophee/feature/screens/widgets/custom_app_bar.dart';
 import 'package:kophee/feature/screens/widgets/home_screen_filter_widget.dart';
 import 'package:kophee/feature/screens/widgets/search_widget.dart';
@@ -89,7 +89,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         onTap: () => Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => ProductsDetail(),
+                              builder: (context) => ShoeDetail(),
                             )),
                         child: const ShoeContainerWidget(
                           shoeImageUrl: Constants.nikeshoe2,
@@ -101,7 +101,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         onTap: () => Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => const ProductsDetail(),
+                              builder: (context) => const ShoeDetail(),
                             )),
                         child: const ShoeContainerWidget(
                           shoeImageUrl: Constants.nikeshoe5,

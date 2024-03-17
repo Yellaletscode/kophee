@@ -7,6 +7,7 @@ final List<Map<String, dynamic>> products = [
     'companyLogoUrl': Constants.brand6,
     'data': [
       {
+        'id': 001,
         'title': 'Air Jordan 1 Retro High OG "Chicago"',
         'model': 'Air Jordan 1',
         'color': 'Red, White, Black',
@@ -18,6 +19,7 @@ final List<Map<String, dynamic>> products = [
             'The iconic Air Jordan 1 returns in the original "Chicago" colorway. Featuring a premium leather upper and classic design lines, this shoe is a must-have for any Jordan fan.'
       },
       {
+        'id': 002,
         'title': 'Nike Blazer Mid 77 Vintage "White"',
         'model': 'Blazer Mid 77',
         'color': 'White',
@@ -29,6 +31,7 @@ final List<Map<String, dynamic>> products = [
             'A timeless classic, the Nike Blazer Mid 77 Vintage features a clean white leather upper and a vulcanized sole for a comfortable and stylish look.'
       },
       {
+        'id': 003,
         'title': 'Nike Air Max 90 "Neon"',
         'model': 'Air Max 90',
         'color': 'Black, Neon Green, Neon Pink',
@@ -40,6 +43,7 @@ final List<Map<String, dynamic>> products = [
             'The Nike Air Max 90 features a visible Max Air unit in the heel for cushioning and a bold colorway for a standout look.'
       },
       {
+        'id': 004,
         'title': 'Nike Zoom Pegasus 39 "Black"',
         'model': 'Zoom Pegasus 39',
         'color': 'Black',
@@ -51,6 +55,7 @@ final List<Map<String, dynamic>> products = [
             'The Nike Zoom Pegasus 39 is a lightweight running shoe designed for comfort and performance. It features a breathable upper and a responsive Zoom Air unit in the forefoot.'
       },
       {
+        'id': 005,
         'title': 'Nike Air Force 1 Low "White"',
         'model': 'Air Force 1 Low',
         'color': 'White',
@@ -62,6 +67,7 @@ final List<Map<String, dynamic>> products = [
             'A cultural icon, the Nike Air Force 1 Low features a clean white leather upper and a classic cupsole construction for a timeless look.'
       },
       {
+        'id': 006,
         'title': 'Nike Cortez "Vintage"',
         'model': 'Cortez',
         'color': 'White, Gum',
@@ -73,6 +79,7 @@ final List<Map<String, dynamic>> products = [
             'A throwback to the track, the Nike Cortez features a nylon upper and a waffle outsole for a comfortable and vintage-inspired look.'
       },
       {
+        'id': 007,
         'title': 'Nike Free RN 5.0 "Grey"',
         'model': 'Free RN 5.0',
         'color': 'Grey',
@@ -91,6 +98,7 @@ final List<Map<String, dynamic>> products = [
     'companyLogoUrl': Constants.brand5,
     'data': [
       {
+        'id': 008,
         'title':
             'Air Jordan 1 High OG "Chicago"', // Assuming this is the Jordan 1
         'model': 'Air Jordan 1',
@@ -103,6 +111,7 @@ final List<Map<String, dynamic>> products = [
             'The iconic Air Jordan 1 returns in the original "Chicago" colorway. Featuring a premium leather upper and classic design lines, this shoe is a must-have for any Jordan fan.'
       },
       {
+        'id': 009,
         'title':
             'Air Jordan (Specify Model)', // Modify title with specific model name
         'model':
@@ -117,6 +126,7 @@ final List<Map<String, dynamic>> products = [
       },
       // Repeat for remaining Jordan shoes
       {
+        'id': 010,
         'title':
             'Air Jordan (Specify Model)', // Modify title with specific model name
         'model': 'Jordan', // Update with specific model name
@@ -129,6 +139,7 @@ final List<Map<String, dynamic>> products = [
             'A stylish and iconic shoe from the Jordan brand. Update description with specific details about the model.'
       },
       {
+        'id': 011,
         'title':
             'Air Jordan (Specify Model)', // Modify title with specific model name
         'model': 'Jordan', // Update with specific model name
@@ -141,6 +152,7 @@ final List<Map<String, dynamic>> products = [
             'A stylish and iconic shoe from the Jordan brand. Update description with specific details about the model.'
       },
       {
+        'id': 012,
         'title':
             'Air Jordan (Specify Model)', // Modify title with specific model name
         'model': 'Jordan', // Update with specific model name
@@ -160,6 +172,7 @@ final List<Map<String, dynamic>> products = [
     'companyLogoUrl': Constants.brand1,
     'data': [
       {
+        'id': 013,
         'title': 'Puma RS-X "White/Pink"',
         'model': 'Puma RS-X',
         'color': 'White/Pink',
@@ -171,6 +184,7 @@ final List<Map<String, dynamic>> products = [
         'isFavourite': false,
       },
       {
+        'id': 014,
         'title': 'Puma Cali Classic "Black"',
         'model': 'Puma Cali Classic',
         'color': 'Black',
@@ -182,6 +196,7 @@ final List<Map<String, dynamic>> products = [
         'isFavourite': true,
       },
       {
+        'id': 015,
         'title': 'Puma Suede Classic "Navy"',
         'model': 'Puma Suede Classic',
         'color': 'Navy',
@@ -193,6 +208,7 @@ final List<Map<String, dynamic>> products = [
         'isFavourite': false,
       },
       {
+        'id': 016,
         'title': 'Puma Velocity Nitro "Grey"',
         'model': 'Puma Velocity Nitro',
         'color': 'Grey',
@@ -204,6 +220,7 @@ final List<Map<String, dynamic>> products = [
         'isFavourite': false,
       },
       {
+        'id': 017,
         'title': 'Puma Disc Blaze "Multicolor"',
         'model': 'Puma Disc Blaze',
         'color': 'Multicolor',
@@ -215,6 +232,7 @@ final List<Map<String, dynamic>> products = [
         'isFavourite': true,
       },
       {
+        'id': 018,
         'title': 'Puma Tsugi Shinsei "White/Black"',
         'model': 'Puma Tsugi Shinsei',
         'color': 'White/Black',
@@ -226,6 +244,7 @@ final List<Map<String, dynamic>> products = [
         'isFavourite': false,
       },
       {
+        'id': 019,
         'title': 'Puma Cell Endura "Black/Red"',
         'model': 'Puma Cell Endura',
         'color': 'Black/Red',

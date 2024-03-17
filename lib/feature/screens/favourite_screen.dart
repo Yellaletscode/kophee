@@ -1,22 +1,27 @@
 import 'package:flutter/material.dart';
-import 'package:kophee/core/constants/data/products.dart';
+
 import 'package:kophee/feature/screens/widgets/Common_text.dart';
+import 'package:kophee/providers/product_provider.dart';
+import 'package:provider/provider.dart';
 import '../../core/constants/constants.dart';
 import 'widgets/custom_app_bar.dart';
 
-class FavouriteScreen extends StatelessWidget {
-  final favouriteProducts = products
-      .expand((product) => product['data'])
-      .where((shoe) => shoe['isFavourite']);
-  final prod = products
-      .expand(
-        (product) => product['data'],
-      )
-      .toList(growable: true);
-  FavouriteScreen({super.key});
+class FavouriteScreen extends StatefulWidget {
+  const FavouriteScreen({super.key});
 
   @override
+  State<FavouriteScreen> createState() => _FavouriteScreenState();
+}
+
+class _FavouriteScreenState extends State<FavouriteScreen> {
+  @override
   Widget build(BuildContext context) {
+    final favouriteShoes = Provider.of<ProductProvider>(context)
+        .shoeItems
+        .expand((shoeData) => shoeData.data)
+        .where((isFav) => isFav.isFavourite == true)
+        .toList();
+
     final Size screenSize = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: Constants.scaffoldBackgroundColor,
@@ -33,15 +38,16 @@ class FavouriteScreen extends StatelessWidget {
         margin: const EdgeInsets.only(top: 20),
         child: GridView.builder(
           padding: const EdgeInsets.only(left: 15, right: 15, top: 20),
-          itemCount: favouriteProducts.length,
+          itemCount: favouriteShoes.length,
           itemBuilder: (context, index) {
-            final shoe = favouriteProducts.elementAt(index);
+            // final shoe = favouriteProducts.elementAt(index);
 
-            print('these are prod ${prod.length}');
+            print('these are prod ${favouriteShoes.length}');
+            // return products[index].data[index].isFavour'ite
             return ShoeContainer(
-              title: shoe['title'],
-              price: shoe['price'],
-              imageUrl: shoe['imageUrl'],
+              title: favouriteShoes[index].title,
+              price: favouriteShoes[index].price,
+              imageUrl: favouriteShoes[index].imageUrl,
             );
           },
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
