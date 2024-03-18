@@ -2,10 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:kophee/core/constants/constants.dart';
 import 'package:kophee/feature/screens/mobile_screen.dart';
 import 'package:kophee/feature/screens/shoe_detail.dart';
+import 'package:kophee/feature/screens/shoe_status_screen.dart';
 import 'package:kophee/feature/screens/widgets/custom_app_bar.dart';
 import 'package:kophee/feature/screens/widgets/home_screen_filter_widget.dart';
 import 'package:kophee/feature/screens/widgets/search_widget.dart';
 import 'package:kophee/feature/screens/widgets/shoe_container_widget.dart';
+import 'package:kophee/providers/product_provider.dart';
+import 'package:provider/provider.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -15,13 +18,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  final List<String> filters = const [
-    'All',
-    'Adidas',
-    'Nike',
-    'Puma',
-    'Converse'
-  ];
+  final List<String> filters = const ['Nike', 'Adidas', 'Puma', 'Converse'];
 
   late String selectedFilter;
 
@@ -34,6 +31,8 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final loadedShoes = Provider.of<ProductProvider>(context).shoeItems;
+    final shoeData = loadedShoes.expand((shoeData) => shoeData.data).toList();
     return Scaffold(
         backgroundColor: Constants.scaffoldBackgroundColor,
         appBar: PreferredSize(
@@ -54,66 +53,84 @@ class _HomeScreenState extends State<HomeScreen> {
                 Constants.verticalSpace,
                 const SearchWidget(),
                 SizedBox(
-                  height: 100,
+                  height: 80,
                   child: ListView.builder(
                     padding: const EdgeInsets.all(10),
                     scrollDirection: Axis.horizontal,
-                    itemCount: filters.length,
+                    itemCount: loadedShoes.length,
                     itemBuilder: (context, index) {
-                      final filter = filters[index];
                       return Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 8),
                         child: GestureDetector(
                           onTap: () {
                             setState(() {
-                              selectedFilter = filter;
+                              selectedFilter = loadedShoes[index].company;
                             });
                           },
                           child: HomeScreenFilterWidget(
                             selectedFilter: selectedFilter,
-                            filter: filter,
+                            filter: loadedShoes[index].company,
+                            brandUrl: loadedShoes[index].companyLogoUrl,
                           ),
                         ),
                       );
                     },
                   ),
                 ),
-                const ShoeStatus(
+                ShoeStatus(
                   shoeStatus: 'Popular Shoes',
-                ),
-                SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  child: Row(
-                    children: [
-                      GestureDetector(
-                        onTap: () => Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => ShoeDetail(),
-                            )),
-                        child: const ShoeContainerWidget(
-                          shoeImageUrl: Constants.nikeshoe2,
-                          shoeBrand: 'Nike Air Max',
-                          shoePrice: '110.9',
-                        ),
+                  onpressed: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => SheoStatusScreen(
+                        title: 'Poular Shoes',
+                        isPopular: true,
+                        data: shoeData,
                       ),
-                      GestureDetector(
-                        onTap: () => Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const ShoeDetail(),
-                            )),
-                        child: const ShoeContainerWidget(
-                          shoeImageUrl: Constants.nikeshoe5,
-                          shoeBrand: 'Nike Jordan',
-                          shoePrice: '410.6',
-                        ),
-                      ),
-                    ],
+                    ),
                   ),
                 ),
-                const ShoeStatus(
+                SizedBox(
+                  height: MediaQuery.of(context).size.width * 0.7,
+                  child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: shoeData.length,
+                      itemBuilder: (context, index) {
+                        return GestureDetector(
+                          onTap: () => Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => ShoeDetail(
+                                model: shoeData[index].model,
+                                description: shoeData[index].description,
+                                price: shoeData[index].price,
+                                imageUrl: shoeData[index].imageUrl,
+                                sizes: shoeData[index].sizes,
+                                title: shoeData[index].title,
+                              ),
+                            ),
+                          ),
+                          child: ShoeContainerWidget(
+                            shoeImageUrl: shoeData[index].imageUrl,
+                            shoeBrand: shoeData[index].model,
+                            shoePrice: shoeData[index].price,
+                          ),
+                        );
+                      }),
+                ),
+                ShoeStatus(
+                  // ignore: prefer_const_constructors
                   shoeStatus: 'New Arrivals',
+                  onpressed: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => SheoStatusScreen(
+                        title: 'New Arrivals',
+                        isPopular: false,
+                        data: shoeData,
+                      ),
+                    ),
+                  ),
                 ),
                 Container(
                   margin: const EdgeInsets.symmetric(horizontal: 15),
@@ -130,25 +147,25 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      const Column(
+                      Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(
+                          const Text(
                             'BEST CHOICE',
                             style: TextStyle(color: Constants.primaryColor),
                           ),
                           Text(
-                            'Nike Air Jordan',
-                            style: TextStyle(
-                              fontSize: 20,
+                            shoeData[1].model,
+                            style: const TextStyle(
+                              fontSize: 22,
                               fontWeight: FontWeight.bold,
-                              letterSpacing: 1.3,
+                              letterSpacing: 1.2,
                             ),
                           ),
                           Text(
-                            '\$849.8',
-                            style: TextStyle(
-                              fontSize: 16,
+                            '\$${shoeData[1].price},',
+                            style: const TextStyle(
+                              fontSize: 20,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
@@ -156,7 +173,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                       Flexible(
                         child: Image.asset(
-                          Constants.nikeshoe2,
+                          shoeData[1].imageUrl,
                           fit: BoxFit.cover,
                           height: 150,
                         ),

@@ -95,9 +95,10 @@ class _MobileScreenState extends State<MobileScreen>
 
 class ShoeStatus extends StatelessWidget {
   final String shoeStatus;
+  final Function() onpressed;
   const ShoeStatus({
     super.key,
-    required this.shoeStatus,
+    required this.shoeStatus, required this.onpressed,
   });
 
   @override
@@ -113,8 +114,8 @@ class ShoeStatus extends StatelessWidget {
             fontWeight: FontWeight.bold,
           ),
         ),
-        const TextButton(
-          onPressed: null,
+         TextButton(
+          onPressed: onpressed,
           child: Text(
             'See all',
             style: TextStyle(

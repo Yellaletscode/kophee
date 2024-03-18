@@ -23,8 +23,9 @@ class AppbarTitleWidget extends StatelessWidget {
               ),
               Text(
                 mainTitle,
+                
                 style: const TextStyle(
-                  fontSize: 22,
+                  fontSize: 18,
                   fontWeight: FontWeight.bold,
                 ),
               ),

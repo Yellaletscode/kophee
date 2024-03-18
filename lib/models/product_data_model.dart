@@ -7,6 +7,7 @@ class ProductDataModel {
   final String imageUrl;
   final List<int> sizes;
   final bool isFavourite;
+  final bool isNewArrival;
   final String description;
 
   ProductDataModel({
@@ -19,5 +20,6 @@ class ProductDataModel {
     required this.sizes,
     required this.isFavourite,
     required this.description,
+    required this.isNewArrival,
   });
 }

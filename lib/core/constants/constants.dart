@@ -44,15 +44,28 @@ class Constants {
   static const brand5 = 'assets/images/brands/brand5.png';
   static const brand6 = 'assets/images/brands/brand6.png';
   static const brand7 = 'assets/images/brands/Vector(2).png';
+
+  static const user = 'assets/images/user.png';
+  static const circle = 'assets/images/bottomCircle.png';
   // Spacings
 
   static const Widget verticalSpace = SizedBox(
     height: 30,
   );
+  static const Widget verticalSpace2 = SizedBox(
+    height: 15,
+  );
+  static const Widget smallVerticalSpace = SizedBox(
+    height: 10,
+  );
 
+  static const String placeholderShoeDescription =
+      'Air Jordan is an American brand of basketball shoes athletic, casual, and style clothing produced by Nike....';
   // Colors
 
   static const Color primaryColor = Color(0xff5A9DE1);
   static const Color scaffoldBackgroundColor = Color(0xffF6F7FA);
   static const Color pureWhite = Colors.white;
+  static const Color grey = Color(0xFF545353);
+  // static const Color dark = Color.fromARGB(255, 196, 202, 218);
 }

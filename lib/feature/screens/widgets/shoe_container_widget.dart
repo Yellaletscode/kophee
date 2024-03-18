@@ -6,7 +6,7 @@ import 'common_text.dart';
 class ShoeContainerWidget extends StatelessWidget {
   final String shoeImageUrl;
   final String shoeBrand;
-  final String shoePrice;
+  final double shoePrice;
   const ShoeContainerWidget({
     super.key,
     required this.shoeImageUrl,
@@ -17,8 +17,8 @@ class ShoeContainerWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.all(10),
-      padding: const EdgeInsets.all(16),
+      margin: const EdgeInsets.only(left: 10, right: 10, top: 10),
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
       decoration: const BoxDecoration(
         color: Constants.pureWhite,
         borderRadius: BorderRadius.all(
@@ -31,8 +31,12 @@ class ShoeContainerWidget extends StatelessWidget {
           Center(
             child: Image.asset(
               shoeImageUrl,
-              fit: BoxFit.cover,
+              width: MediaQuery.of(context).size.width * 0.38,
+              // fit: BoxFit.cover,
             ),
+          ),
+          const SizedBox(
+            height: 10,
           ),
           const CommonText(),
           const SizedBox(
@@ -49,7 +53,7 @@ class ShoeContainerWidget extends StatelessWidget {
           Text(
             '\$$shoePrice',
             style: const TextStyle(
-              fontSize: 15,
+              fontSize: 18,
             ),
           ),
         ],

@@ -15,6 +15,7 @@ final List<Map<String, dynamic>> products = [
         'imageUrl': Constants.nike1, // Update with actual image URL
         'sizes': [9, 10, 11, 12],
         'isFavourite': true,
+        'isNewarrival': false,
         'description':
             'The iconic Air Jordan 1 returns in the original "Chicago" colorway. Featuring a premium leather upper and classic design lines, this shoe is a must-have for any Jordan fan.'
       },
@@ -27,6 +28,7 @@ final List<Map<String, dynamic>> products = [
         'imageUrl': Constants.nike2, // Update with actual image URL
         'sizes': [9, 10, 11, 12],
         'isFavourite': true,
+        'isNewarrival': true,
         'description':
             'A timeless classic, the Nike Blazer Mid 77 Vintage features a clean white leather upper and a vulcanized sole for a comfortable and stylish look.'
       },
@@ -39,6 +41,7 @@ final List<Map<String, dynamic>> products = [
         'imageUrl': Constants.nike3, // Update with actual image URL
         'sizes': [9, 10, 11, 12],
         'isFavourite': false,
+        'isNewarrival': false,
         'description':
             'The Nike Air Max 90 features a visible Max Air unit in the heel for cushioning and a bold colorway for a standout look.'
       },
@@ -51,6 +54,7 @@ final List<Map<String, dynamic>> products = [
         'imageUrl': Constants.nike4, // Update with actual image URL
         'sizes': [9, 10, 11, 12],
         'isFavourite': false,
+        'isNewarrival': true,
         'description':
             'The Nike Zoom Pegasus 39 is a lightweight running shoe designed for comfort and performance. It features a breathable upper and a responsive Zoom Air unit in the forefoot.'
       },
@@ -63,6 +67,7 @@ final List<Map<String, dynamic>> products = [
         'imageUrl': Constants.nike5, // Update with actual image URL
         'sizes': [9, 10, 11, 12],
         'isFavourite': false,
+        'isNewarrival': false,
         'description':
             'A cultural icon, the Nike Air Force 1 Low features a clean white leather upper and a classic cupsole construction for a timeless look.'
       },
@@ -75,6 +80,7 @@ final List<Map<String, dynamic>> products = [
         'imageUrl': Constants.nike6, // Update with actual image URL
         'sizes': [9, 10, 11, 12],
         'isFavourite': true,
+        'isNewarrival': true,
         'description':
             'A throwback to the track, the Nike Cortez features a nylon upper and a waffle outsole for a comfortable and vintage-inspired look.'
       },
@@ -87,6 +93,7 @@ final List<Map<String, dynamic>> products = [
         'imageUrl': Constants.nike7, // Update with actual image URL
         'sizes': [9, 10, 11, 12],
         'isFavourite': false,
+        'isNewarrival': false,
         'description':
             'The Nike Free RN 5.0 is a minimalist running shoe designed for a natural feel. It features a flexible upper and a comfortable foam sole.'
       }
@@ -107,6 +114,7 @@ final List<Map<String, dynamic>> products = [
         'imageUrl': Constants.jordan1, // Update with actual image URL
         'sizes': [9, 10, 11, 12],
         'isFavourite': true,
+        'isNewarrival': true,
         'description':
             'The iconic Air Jordan 1 returns in the original "Chicago" colorway. Featuring a premium leather upper and classic design lines, this shoe is a must-have for any Jordan fan.'
       },
@@ -121,6 +129,7 @@ final List<Map<String, dynamic>> products = [
         'imageUrl': Constants.jordan2, // Update with actual image URL
         'sizes': [9, 10, 11, 12],
         'isFavourite': false,
+        'isNewarrival': false,
         'description':
             'A stylish and iconic shoe from the Jordan brand. Update description with specific details about the model.'
       },
@@ -135,6 +144,7 @@ final List<Map<String, dynamic>> products = [
         'imageUrl': Constants.jordan3, // Update with actual image URL
         'sizes': [9, 10, 11, 12],
         'isFavourite': false,
+        'isNewarrival': true,
         'description':
             'A stylish and iconic shoe from the Jordan brand. Update description with specific details about the model.'
       },
@@ -148,6 +158,7 @@ final List<Map<String, dynamic>> products = [
         'imageUrl': Constants.jordan4, // Update with actual image URL
         'sizes': [9, 10, 11, 12],
         'isFavourite': false,
+        'isNewarrival': false,
         'description':
             'A stylish and iconic shoe from the Jordan brand. Update description with specific details about the model.'
       },
@@ -161,6 +172,7 @@ final List<Map<String, dynamic>> products = [
         'imageUrl': Constants.jordan5, // Update with actual image URL
         'sizes': [9, 10, 11, 12],
         'isFavourite': true,
+        'isNewarrival': true,
         'description':
             'A stylish and iconic shoe from the Jordan brand. Update description with specific details about the model.'
       },
@@ -182,6 +194,7 @@ final List<Map<String, dynamic>> products = [
         'imageUrl': Constants.puma1, // Update with actual image URL
         'sizes': [9, 10, 11, 12],
         'isFavourite': false,
+        'isNewarrival': true,
       },
       {
         'id': 014,
@@ -194,6 +207,7 @@ final List<Map<String, dynamic>> products = [
         'imageUrl': Constants.puma2, // Update with actual image URL
         'sizes': [9, 10, 11, 12],
         'isFavourite': true,
+        'isNewarrival': false,
       },
       {
         'id': 015,
@@ -206,6 +220,7 @@ final List<Map<String, dynamic>> products = [
         'imageUrl': Constants.puma3, // Update with actual image URL
         'sizes': [9, 10, 11, 12],
         'isFavourite': false,
+        'isNewarrival': true,
       },
       {
         'id': 016,
@@ -218,6 +233,7 @@ final List<Map<String, dynamic>> products = [
         'imageUrl': Constants.puma4, // Update with actual image URL
         'sizes': [9, 10, 11, 12],
         'isFavourite': false,
+        'isNewarrival': false,
       },
       {
         'id': 017,
@@ -230,6 +246,7 @@ final List<Map<String, dynamic>> products = [
         'imageUrl': Constants.puma5, // Update with actual image URL
         'sizes': [9, 10, 11, 12],
         'isFavourite': true,
+        'isNewarrival': true,
       },
       {
         'id': 018,
@@ -242,6 +259,7 @@ final List<Map<String, dynamic>> products = [
         'imageUrl': Constants.puma6, // Update with actual image URL
         'sizes': [9, 10, 11, 12],
         'isFavourite': false,
+        'isNewarrival': false,
       },
       {
         'id': 019,
@@ -254,7 +272,20 @@ final List<Map<String, dynamic>> products = [
         'imageUrl': Constants.puma7, // Update with actual image URL
         'sizes': [9, 10, 11, 12],
         'isFavourite': false,
+        'isNewarrival': true,
       },
     ],
   },
+  {
+    'id': '3',
+    'company': 'Adidas',
+    'companyLogoUrl': Constants.brand3,
+    'data': [],
+  },
+  {
+    'id': '4',
+    'company': 'Converse',
+    'companyLogoUrl': Constants.brand4,
+    'data': [],
+  }
 ];
