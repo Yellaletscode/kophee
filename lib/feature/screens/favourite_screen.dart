@@ -4,7 +4,7 @@ import 'package:kophee/feature/screens/widgets/Common_text.dart';
 import 'package:kophee/providers/product_provider.dart';
 import 'package:provider/provider.dart';
 import '../../core/constants/constants.dart';
-import 'widgets/custom_app_bar.dart';
+import '../../core/common/widgets/custom_app_bar.dart';
 
 class FavouriteScreen extends StatefulWidget {
   const FavouriteScreen({super.key});

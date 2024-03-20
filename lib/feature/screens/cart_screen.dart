@@ -1,17 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:kophee/core/constants/constants.dart';
-import 'package:kophee/feature/screens/widgets/custom_app_bar.dart';
+import 'package:kophee/core/common/widgets/custom_app_bar.dart';
+import 'package:kophee/providers/cart_provider.dart';
 import 'package:provider/provider.dart';
 
-class CartScreen extends StatelessWidget {
-  const CartScreen({super.key});
+class CartScreen extends StatefulWidget {
+  final int? selectedSize;
+  const CartScreen({super.key, this.selectedSize});
+
+  @override
+  State<CartScreen> createState() => _CartScreenState();
+}
+
+class _CartScreenState extends State<CartScreen> {
+  int shoeQuantity = 1;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Constants.scaffoldBackgroundColor,
       appBar: PreferredSize(
-        preferredSize: Size(MediaQuery.of(context).size.width, 50),
+        preferredSize: Size(MediaQuery.of(context).size.width, 70),
         child: CustomAppBar(
           icon: Icons.shopping_cart,
           mainTitle: 'Cart',
@@ -21,101 +30,36 @@ class CartScreen extends StatelessWidget {
       ),
       body: Column(
         children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
-            child: Column(
-              children: [
-                Row(
-                  children: [
-                    Container(
-                      padding: const EdgeInsets.all(10),
-                      decoration: const BoxDecoration(
-                          color: Constants.pureWhite,
-                          borderRadius: BorderRadius.all(Radius.circular(15))),
-                      width: MediaQuery.of(context).size.width * 0.33,
-                      child: Image.asset(Constants.nike1),
-                    ),
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Row(
-                          children: [
-                            const Text(
-                              'Nike Club Max',
-                              style: TextStyle(
-                                fontSize: 22,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            SizedBox(
-                              width: MediaQuery.of(context).size.width * 0.2,
-                            ),
-                            const Text(
-                              'L',
-                              style: TextStyle(
-                                fontSize: 22,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ],
-                        ),
-                        const Text(
-                          '\$64.95',
-                          style: TextStyle(
-                            fontSize: 22,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        Row(
-                          children: [
-                            Container(
-                                padding: const EdgeInsets.all(5),
-                                decoration: const BoxDecoration(
-                                  color: Colors.white,
-                                  shape: BoxShape.circle,
-                                ),
-                                child: const Icon(Icons.remove)),
-                            const SizedBox(
-                              width: 10,
-                            ),
-                            const Text(
-                              '1',
-                              style: TextStyle(
-                                fontSize: 20,
-                              ),
-                            ),
-                            const SizedBox(
-                              width: 10,
-                            ),
-                            Container(
-                              padding: const EdgeInsets.all(5),
-                              decoration: const BoxDecoration(
-                                color: Constants.primaryColor,
-                                shape: BoxShape.circle,
-                              ),
-                              child: const Icon(
-                                Icons.add,
-                                color: Constants.pureWhite,
-                              ),
-                            ),
-                            const SizedBox(width: 80),
-                            SizedBox(
-                              width: MediaQuery.of(context).size.width * 0.08,
-                            ),
-                            const Icon(
-                              Icons.delete,
-                              color: Colors.red,
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-              ],
+          SizedBox(
+            height: MediaQuery.of(context).size.height * 0.55,
+            child: ListView.builder(
+              itemCount: Provider.of<CartProvider>(context).cart.length,
+              itemBuilder: (context, index) {
+                final shoeInCart = Provider.of<CartProvider>(context).cart;
+                return ListTile(
+                  title: Text(shoeInCart[index].model),
+                  leading: Image.asset(
+                    shoeInCart[index].imageUrl,
+                  ),
+                  subtitle: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text('Size: ${widget.selectedSize}'),
+                      IncreaseOrDecreaseCartItem(
+                        removeIcon: Icons.remove,
+                        addIcon: Icons.add,
+                        quantity: shoeQuantity,
+                        decreaseQuantity: () => setState(() {
+                          shoeQuantity = shoeQuantity - 1;
+                        }),
+                        increaseQuantity: () => setState(() {
+                          shoeQuantity = shoeQuantity + 1;
+                        }),
+                      ),
+                    ],
+                  ),
+                );
+              },
             ),
           ),
           const Spacer(),
@@ -123,10 +67,12 @@ class CartScreen extends StatelessWidget {
             padding: const EdgeInsets.all(20),
             width: MediaQuery.of(context).size.width,
             decoration: const BoxDecoration(
-                color: Constants.pureWhite,
-                borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(30),
-                    topRight: Radius.circular(30))),
+              color: Constants.pureWhite,
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(30),
+                topRight: Radius.circular(30),
+              ),
+            ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -221,6 +167,44 @@ class CartScreen extends StatelessWidget {
                 ),
               ],
             ),
+          ),
+          const Spacer(),
+        ],
+      ),
+    );
+  }
+}
+
+class IncreaseOrDecreaseCartItem extends StatelessWidget {
+  final IconData removeIcon;
+  final IconData addIcon;
+  final int quantity;
+  final Function() decreaseQuantity;
+  final Function() increaseQuantity;
+
+  const IncreaseOrDecreaseCartItem({
+    super.key,
+    required this.removeIcon,
+    required this.addIcon,
+    required this.quantity,
+    required this.decreaseQuantity,
+    required this.increaseQuantity,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      
+      child: Row(
+        children: [
+          IconButton(
+            icon: Icon(removeIcon),
+            onPressed: decreaseQuantity,
+          ),
+          Text('$quantity'),
+          IconButton(
+            icon: Icon(addIcon),
+            onPressed: increaseQuantity,
           ),
         ],
       ),

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:kophee/core/constants/data/products.dart';
+import 'package:kophee/data/products.dart';
 import 'package:kophee/models/product_model.dart';
 import '../models/product_data_model.dart';
 
@@ -271,6 +271,7 @@ class ProductProvider with ChangeNotifier {
       data: [],
     ),
   ];
+
   final List<ProductModel> favourites = [];
 
   final favouriteProducts = products
@@ -278,37 +279,19 @@ class ProductProvider with ChangeNotifier {
       .where((shoe) => shoe['isFavourite'])
       .toList();
 
-//   void initializeProducts() {
-//     for (var product in products) {
-//       for (var data in product['data']) {
-//         productData.add(
-//           ProductDataModel(
-//             id: data['id'],
-//             title: data['title'],
-//             model: data['model'],
-//             color: data['color'],
-//             price: data['price'],
-//             imageUrl: data['imageUrl'],
-//             sizes: data['sizes'],
-//             isFavourite: data['isFavourite'],
-//             description: data['description'],
-//           ),
-//         );
-//       }
-//       _shoesItems.add(
-//         ProductModel(
-//           id: product['id'],
-//           company: product['company'],
-//           companyLogoUrl: product['companyLogoUrl'],
-//           data: productData,
-//         ),
-//       );
-//     }
-//   }
+  void appToFavourite(ProductModel shoes) {
+    favourites.add(shoes);
+    notifyListeners();
+  }
+
+  void removeFromFavourite(ProductModel shoes) {
+    favourites.remove(shoes);
+    notifyListeners();
+  }
 
   List<ProductModel> get shoeItems => _shoesItems;
 
   void addProduct() {
     notifyListeners();
   }
- }
+}

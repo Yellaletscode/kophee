@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:kophee/feature/screens/widgets/custom_app_bar.dart';
+import 'package:kophee/core/common/widgets/custom_app_bar.dart';
 
 import '../../core/constants/constants.dart';
 

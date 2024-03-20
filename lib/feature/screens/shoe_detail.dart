@@ -1,26 +1,32 @@
 import 'package:flutter/material.dart';
 
 import 'package:kophee/core/constants/constants.dart';
+import 'package:kophee/data/products.dart';
 import 'package:kophee/feature/screens/cart_screen.dart';
 import 'package:kophee/feature/screens/widgets/Common_text.dart';
-import 'package:kophee/feature/screens/widgets/custom_app_bar.dart';
+import 'package:kophee/core/common/widgets/custom_app_bar.dart';
+import 'package:kophee/models/product_data_model.dart';
+import 'package:kophee/providers/cart_provider.dart';
+import 'package:provider/provider.dart';
 
 class ShoeDetail extends StatefulWidget {
-  final String model;
-  final String description;
-  final double price;
-  final String imageUrl;
-  final String title;
-  final List<int> sizes;
-
-  ShoeDetail({
+  // final int id;
+  // final String model;
+  // final String description;
+  // final double price;
+  // final String imageUrl;
+  // final String title;
+  // final List<int> sizes;
+  final ProductDataModel product;
+  const ShoeDetail({
     super.key,
-    required this.model,
-    required this.description,
-    required this.price,
-    required this.imageUrl,
-    required this.sizes,
-    required this.title,
+    required this.product,
+    // required this.model,
+    // required this.description,
+    // required this.price,
+    // required this.imageUrl,
+    // required this.sizes,
+    // required this.title, required this.id,
   });
 
   @override
@@ -34,7 +40,7 @@ class _ShoeDetailState extends State<ShoeDetail> {
   void initState() {
     super.initState();
 
-    selectedSize = widget.sizes[0];
+    selectedSize = widget.product.sizes[0];
   }
 
   @override
@@ -45,7 +51,7 @@ class _ShoeDetailState extends State<ShoeDetail> {
       appBar: PreferredSize(
         preferredSize: Size(screenSize.width, 70),
         child: CustomAppBar(
-          mainTitle: widget.model,
+          mainTitle: widget.product.model,
           leadingIcon: Icons.arrow_back,
           onMenuPressed: () => Navigator.pop(context),
           onPressed: () {},
@@ -60,7 +66,7 @@ class _ShoeDetailState extends State<ShoeDetail> {
               children: [
                 Center(
                   child: Image.asset(
-                    widget.imageUrl,
+                    widget.product.imageUrl,
                     width: MediaQuery.of(context).size.width * 0.55,
                   ),
                 ),
@@ -90,7 +96,7 @@ class _ShoeDetailState extends State<ShoeDetail> {
                   const CommonText(),
                   Constants.verticalSpace2,
                   Text(
-                    widget.title,
+                    widget.product.title,
                     style: const TextStyle(
                       fontSize: 23,
                       fontWeight: FontWeight.bold,
@@ -98,7 +104,7 @@ class _ShoeDetailState extends State<ShoeDetail> {
                   ),
                   Constants.smallVerticalSpace,
                   Text(
-                    widget.description,
+                    widget.product.description,
                     style: const TextStyle(
                       fontSize: 20,
                       color: Constants.grey,
@@ -117,27 +123,28 @@ class _ShoeDetailState extends State<ShoeDetail> {
                     height: 70,
                     child: ListView.builder(
                       scrollDirection: Axis.horizontal,
-                      itemCount: widget.sizes.length,
+                      itemCount: widget.product.sizes.length,
                       itemBuilder: (context, index) {
-                        
                         return Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 10),
                           child: GestureDetector(
                             onTap: () {
-                              print('this got tapped ${widget.sizes[index]}');
+                              print(
+                                  'this got tapped ${widget.product.sizes[index]}');
                               setState(() {
-                                selectedSize = widget.sizes[index];
+                                selectedSize = widget.product.sizes[index];
                               });
                             },
                             child: Container(
                               padding: const EdgeInsets.all(20),
                               decoration: BoxDecoration(
-                                  color: selectedSize == widget.sizes[index]
+                                  color: selectedSize ==
+                                          widget.product.sizes[index]
                                       ? Constants.primaryColor
                                       : Constants.scaffoldBackgroundColor,
                                   shape: BoxShape.circle),
                               child: Text(
-                                '${widget.sizes[index]}',
+                                '${widget.product.sizes[index]}',
                                 style: TextStyle(fontSize: 22),
                               ),
                             ),
@@ -167,17 +174,21 @@ class _ShoeDetailState extends State<ShoeDetail> {
                             ),
                             Constants.smallVerticalSpace,
                             Text(
-                              '\$${widget.price}',
+                              '\$${widget.product.price}',
                               style:
                                   TextStyle(fontSize: 23, letterSpacing: 1.1),
                             ),
                           ],
                         ),
                         GestureDetector(
-                          onTap: () => Navigator.pushReplacement(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => const CartScreen())),
+                          onTap: () {
+                            Provider.of<CartProvider>(context, listen: false)
+                                .addProductToCart(widget.product);
+                            Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>  CartScreen(selectedSize: selectedSize,)));
+                          },
                           child: Container(
                             padding: const EdgeInsets.symmetric(
                                 vertical: 20, horizontal: 20),

@@ -1,4 +1,4 @@
-import 'package:kophee/models/product_data_model.dart';
+import '/models/product_data_model.dart';
 
 class ProductModel {
   final String id;

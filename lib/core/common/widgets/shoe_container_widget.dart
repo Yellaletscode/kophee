@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../../core/constants/constants.dart';
-import 'common_text.dart';
+import '../../constants/constants.dart';
+import '../../../feature/screens/widgets/common_text.dart';
 
 class ShoeContainerWidget extends StatelessWidget {
   final String shoeImageUrl;

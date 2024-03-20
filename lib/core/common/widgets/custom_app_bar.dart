@@ -4,6 +4,7 @@ import 'package:kophee/feature/screens/widgets/appbar_icon_btn_widget.dart';
 import 'package:kophee/feature/screens/widgets/appbar_title_widget.dart';
 
 class CustomAppBar extends StatelessWidget {
+  final bool needsADrawer;
   final bool isSubtitle;
   final String mainTitle;
   final IconData? icon;
@@ -15,10 +16,11 @@ class CustomAppBar extends StatelessWidget {
     super.key,
     this.isSubtitle = false,
     required this.mainTitle,
-     this.icon = Icons.shopping_bag,
+    this.icon = Icons.shopping_bag,
     this.leadingIcon = Icons.menu,
     required this.onPressed,
     required this.onMenuPressed,
+    this.needsADrawer = false,
   });
 
   @override
@@ -29,6 +31,7 @@ class CustomAppBar extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
+            needsADrawer ? Drawer() :
             AppBarIconBtnWidget(
               icon: leadingIcon,
               left: 10,
