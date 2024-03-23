@@ -69,11 +69,7 @@ class _MobileScreenState extends State<MobileScreen>
             color:
                 _page == 3 ? Constants.primaryColor : const Color(0xFF3B3A3A),
           ),
-          Icon(
-            Icons.person,
-            color:
-                _page == 4 ? Constants.primaryColor : const Color(0xFF3B3A3A),
-          ),
+
         ],
         onTap: navigationTapped,
       ),
@@ -86,7 +82,7 @@ class _MobileScreenState extends State<MobileScreen>
           FavouriteScreen(),
           CartScreen(),
           NotificationScreen(),
-          ProfileScreen(),
+          
         ],
       ),
     );

@@ -21,19 +21,21 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   final List<String> filters = const ['Nike', 'Adidas', 'Puma', 'Converse'];
-
+  late bool isFavourite;
   late String selectedFilter;
-
+//////////////////////////////////
   @override
   void initState() {
     super.initState();
 
     selectedFilter = filters[0];
+    isFavourite = false;
   }
 
   @override
   Widget build(BuildContext context) {
-    final loadedShoes = Provider.of<ProductProvider>(context).shoeItems;
+    final shoesInfo = Provider.of<ProductProvider>(context);
+    final loadedShoes = shoesInfo.shoeItems;
     final shoeData = loadedShoes.expand((shoeData) => shoeData.data).toList();
     return Scaffold(
       backgroundColor: Constants.scaffoldBackgroundColor,
@@ -55,7 +57,7 @@ class _HomeScreenState extends State<HomeScreen> {
               Constants.verticalSpace,
               const SearchWidget(),
               SizedBox(
-                height: 80,
+                height: 60,
                 child: ListView.builder(
                   padding: const EdgeInsets.all(10),
                   scrollDirection: Axis.horizontal,
@@ -65,9 +67,11 @@ class _HomeScreenState extends State<HomeScreen> {
                       padding: const EdgeInsets.symmetric(horizontal: 8),
                       child: GestureDetector(
                         onTap: () {
-                          setState(() {
-                            selectedFilter = loadedShoes[index].company;
-                          });
+                          setState(
+                            () {
+                              selectedFilter = loadedShoes[index].company;
+                            },
+                          );
                         },
                         child: HomeScreenFilterWidget(
                           selectedFilter: selectedFilter,
@@ -98,25 +102,26 @@ class _HomeScreenState extends State<HomeScreen> {
                     scrollDirection: Axis.horizontal,
                     itemCount: shoeData.length,
                     itemBuilder: (context, index) {
-                      return GestureDetector(
-                        onTap: () => Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => ShoeDetail(
-                              product: shoeData[index],
+                      return ChangeNotifierProvider.value(
+                        value: shoeData[index],
+                        child: GestureDetector(
+                          onTap: () => Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => ShoeDetail(
+                                product: shoeData[index],
+                              ),
                             ),
                           ),
-                        ),
-                        child: ShoeContainerWidget(
-                          shoeImageUrl: shoeData[index].imageUrl,
-                          shoeBrand: shoeData[index].model,
-                          shoePrice: shoeData[index].price,
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: ShoeContainerWidget(),
+                          ),
                         ),
                       );
                     }),
               ),
               ShoeStatus(
-                // ignore: prefer_const_constructors
                 shoeStatus: 'New Arrivals',
                 onpressed: () => Navigator.push(
                   context,
@@ -129,7 +134,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ),
               ),
-              CustomeCarouselSlidder( shoeData: shoeData),
+              CustomeCarouselSlidder(shoeData: shoeData),
             ],
           ),
         ),

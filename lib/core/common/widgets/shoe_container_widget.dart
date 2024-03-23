@@ -1,23 +1,32 @@
 import 'package:flutter/material.dart';
+import 'package:kophee/models/product_data_model.dart';
+import 'package:provider/provider.dart';
 
 import '../../constants/constants.dart';
 import '../../../feature/screens/widgets/common_text.dart';
 
 class ShoeContainerWidget extends StatelessWidget {
-  final String shoeImageUrl;
-  final String shoeBrand;
-  final double shoePrice;
-  const ShoeContainerWidget({
+  String? shoeImageUrl;
+  String? shoeBrand;
+  double? shoePrice;
+
+  bool isGrid;
+ 
+
+ 
+  ShoeContainerWidget({
     super.key,
-    required this.shoeImageUrl,
-    required this.shoeBrand,
-    required this.shoePrice,
+    this.shoeImageUrl,
+    this.shoeBrand,
+    this.shoePrice,
+    this.isGrid = false,
   });
 
   @override
   Widget build(BuildContext context) {
+    final shoesData = Provider.of<ProductDataModel>(context);
     return Container(
-      margin: const EdgeInsets.only(left: 10, right: 10, top: 10),
+      
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
       decoration: const BoxDecoration(
         color: Constants.pureWhite,
@@ -28,13 +37,55 @@ class ShoeContainerWidget extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Center(
-            child: Image.asset(
-              shoeImageUrl,
-              width: MediaQuery.of(context).size.width * 0.38,
-              // fit: BoxFit.cover,
+       !isGrid ?  Flexible(
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                InkWell(
+                  onTap: () {
+                    shoesData.toggleFavoriteStatus();
+                  },
+                  child: !shoesData.isFavourite
+                      ? const Icon(Icons.favorite_outline)
+                      : const Icon(
+                          Icons.favorite,
+                          color: Constants.primaryColor,
+                        ),
+                ),
+                Image.asset(
+                  shoesData.imageUrl,
+                  width: MediaQuery.of(context).size.width * 0.38,
+                  // fit: BoxFit.cover,
+                ),
+              ],
             ),
+           )  :
+          Row(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              InkWell(
+                onTap: () {
+                  shoesData.toggleFavoriteStatus();
+                },
+                child: !shoesData.isFavourite
+                    ? const Icon(Icons.favorite_outline)
+                    : const Icon(
+                        Icons.favorite,
+                        color: Constants.primaryColor,
+                      ),
+              ),
+              Flexible(
+                child: Image.asset(
+                  shoesData.imageUrl,
+                  width: MediaQuery.of(context).size.width * 0.38,
+                  // fit: BoxFit.cover,
+                ),
+              ),
+            ],
           ),
+
           const SizedBox(
             height: 10,
           ),
@@ -43,7 +94,7 @@ class ShoeContainerWidget extends StatelessWidget {
             height: 10,
           ),
           Text(
-            shoeBrand,
+            shoesData.model,
             style: const TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.bold,
@@ -51,7 +102,7 @@ class ShoeContainerWidget extends StatelessWidget {
             ),
           ),
           Text(
-            '\$$shoePrice',
+            '\$${shoesData.price}',
             style: const TextStyle(
               fontSize: 18,
             ),

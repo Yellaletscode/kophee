@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:kophee/core/constants/constants.dart';
 import 'package:kophee/core/common/widgets/custom_app_bar.dart';
+import 'package:kophee/models/product_data_model.dart';
 import 'package:kophee/providers/cart_provider.dart';
 import 'package:provider/provider.dart';
 
 class CartScreen extends StatefulWidget {
+  final int? shoeId;
   final int? selectedSize;
-  const CartScreen({super.key, this.selectedSize});
+  const CartScreen({super.key, this.selectedSize, this.shoeId});
 
   @override
   State<CartScreen> createState() => _CartScreenState();
@@ -35,11 +37,25 @@ class _CartScreenState extends State<CartScreen> {
             child: ListView.builder(
               itemCount: Provider.of<CartProvider>(context).cart.length,
               itemBuilder: (context, index) {
-                final shoeInCart = Provider.of<CartProvider>(context).cart;
+                final shoesInfo = Provider.of<CartProvider>(context);
+                final shoeInCart = shoesInfo.cart;
+                 final deleteshoeInCart = shoeInCart
+                          .firstWhere((prod) => prod.id == shoeInCart[index].id);
                 return ListTile(
                   title: Text(shoeInCart[index].model),
                   leading: Image.asset(
                     shoeInCart[index].imageUrl,
+                  ),
+                  trailing: IconButton(
+                    onPressed: () {
+                     
+
+                      shoesInfo.removeProductFromCart(deleteshoeInCart);
+                    },
+                    icon: const Icon(
+                      Icons.delete,
+                      color: Colors.red,
+                    ),
                   ),
                   subtitle: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -49,9 +65,11 @@ class _CartScreenState extends State<CartScreen> {
                         removeIcon: Icons.remove,
                         addIcon: Icons.add,
                         quantity: shoeQuantity,
-                        decreaseQuantity: () => setState(() {
-                          shoeQuantity = shoeQuantity - 1;
-                        }),
+                        decreaseQuantity: () {
+                          if (shoeInCart[index].id == deleteshoeInCart.id){ setState(() {
+                            shoeQuantity ++;
+                          });}
+                        },
                         increaseQuantity: () => setState(() {
                           shoeQuantity = shoeQuantity + 1;
                         }),
@@ -194,8 +212,8 @@ class IncreaseOrDecreaseCartItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
         children: [
           IconButton(
             icon: Icon(removeIcon),

@@ -187,7 +187,7 @@ class _ShoeDetailState extends State<ShoeDetail> {
                             Navigator.pushReplacement(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) =>  CartScreen(selectedSize: selectedSize,)));
+                                    builder: (context) =>  CartScreen(selectedSize: selectedSize, shoeId: widget.product.id,),),);
                           },
                           child: Container(
                             padding: const EdgeInsets.symmetric(

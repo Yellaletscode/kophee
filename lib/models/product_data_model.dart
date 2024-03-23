@@ -1,4 +1,6 @@
-class ProductDataModel {
+import 'package:flutter/material.dart';
+
+class ProductDataModel extends ChangeNotifier {
   final int id;
   final String title;
   final String model;
@@ -6,7 +8,7 @@ class ProductDataModel {
   final double price;
   final String imageUrl;
   final List<int> sizes;
-  final bool isFavourite;
+  bool isFavourite;
   final bool isNewArrival;
   final String description;
 
@@ -18,8 +20,13 @@ class ProductDataModel {
     required this.price,
     required this.imageUrl,
     required this.sizes,
-    required this.isFavourite,
+    this.isFavourite = false,
     required this.description,
     required this.isNewArrival,
   });
+
+  void toggleFavoriteStatus() {
+    isFavourite = !isFavourite;
+    notifyListeners();
+  }
 }
