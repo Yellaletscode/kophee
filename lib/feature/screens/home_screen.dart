@@ -57,7 +57,7 @@ class _HomeScreenState extends State<HomeScreen> {
               Constants.verticalSpace,
               const SearchWidget(),
               SizedBox(
-                height: 60,
+                height: 80,
                 child: ListView.builder(
                   padding: const EdgeInsets.all(10),
                   scrollDirection: Axis.horizontal,
@@ -97,7 +97,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
               SizedBox(
-                height: MediaQuery.of(context).size.width * 0.7,
+                height: MediaQuery.of(context).size.width * 0.6,
                 child: ListView.builder(
                     scrollDirection: Axis.horizontal,
                     itemCount: shoeData.length,
