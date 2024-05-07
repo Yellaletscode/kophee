@@ -6,19 +6,19 @@ import '../../constants/constants.dart';
 import '../../../feature/screens/widgets/common_text.dart';
 
 class ShoeContainerWidget extends StatelessWidget {
-  String? shoeImageUrl;
-  String? shoeBrand;
-  double? shoePrice;
+//  final String? shoeImageUrl;
+//  final String? shoeBrand;
+//  final double? shoePrice;
 
-  bool isGrid;
+ final bool isGrid;
  
 
  
-  ShoeContainerWidget({
+  const ShoeContainerWidget({
     super.key,
-    this.shoeImageUrl,
-    this.shoeBrand,
-    this.shoePrice,
+    // this.shoeImageUrl,
+    // this.shoeBrand,
+    // this.shoePrice,
     this.isGrid = false,
   });
 
@@ -44,7 +44,9 @@ class ShoeContainerWidget extends StatelessWidget {
               children: [
                 InkWell(
                   onTap: () {
+
                     shoesData.toggleFavoriteStatus();
+                    
                   },
                   child: !shoesData.isFavourite
                       ? const Icon(Icons.favorite_outline)

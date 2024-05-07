@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-
 class HomeScreenFilterWidget extends StatelessWidget {
   const HomeScreenFilterWidget({
     super.key,

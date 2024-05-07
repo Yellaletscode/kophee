@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "642472256294",
+    "project_id": "kopheee",
+    "storage_bucket": "kopheee.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:642472256294:android:c9ef7e0d59a6ef41a657e7",
+        "android_client_info": {
+          "package_name": "com.example.kophee"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDgLk7mrbF9hJDfGVlqJsMlDw19xIR9S_8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

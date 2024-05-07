@@ -52,8 +52,8 @@ class _FavouriteScreenState extends State<FavouriteScreen> {
               child: ShoeContainerWidget(
                 isGrid: true,
                 // shoeBrand: favouriteShoes[index].title,
-                shoePrice: favouriteShoes[index].price,
-                shoeImageUrl: favouriteShoes[index].imageUrl,
+                // shoePrice: favouriteShoes[index].price,
+                // shoeImageUrl: favouriteShoes[index].imageUrl,
               ),
             ),
           );

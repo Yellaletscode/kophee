@@ -4,7 +4,6 @@ import 'package:kophee/feature/screens/cart_screen.dart';
 import 'package:kophee/feature/screens/favourite_screen.dart';
 import 'package:kophee/feature/screens/home_screen.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
-import 'package:kophee/feature/screens/notification_screen.dart';
 import 'package:kophee/feature/screens/profile_screen.dart';
 
 class MobileScreen extends StatefulWidget {
@@ -65,11 +64,10 @@ class _MobileScreenState extends State<MobileScreen>
                 _page == 2 ? Constants.primaryColor : const Color(0xFF3B3A3A),
           ),
           Icon(
-            Icons.notifications,
+            Icons.person,
             color:
                 _page == 3 ? Constants.primaryColor : const Color(0xFF3B3A3A),
           ),
-
         ],
         onTap: navigationTapped,
       ),
@@ -77,12 +75,11 @@ class _MobileScreenState extends State<MobileScreen>
         controller: pageController,
         onPageChanged: onPageChanged,
         physics: const NeverScrollableScrollPhysics(),
-        children: [
+        children: const [
           HomeScreen(),
           FavouriteScreen(),
           CartScreen(),
-          NotificationScreen(),
-          
+          ProfileScreen(),
         ],
       ),
     );
@@ -94,7 +91,8 @@ class ShoeStatus extends StatelessWidget {
   final Function() onpressed;
   const ShoeStatus({
     super.key,
-    required this.shoeStatus, required this.onpressed,
+    required this.shoeStatus,
+    required this.onpressed,
   });
 
   @override
@@ -110,9 +108,9 @@ class ShoeStatus extends StatelessWidget {
             fontWeight: FontWeight.bold,
           ),
         ),
-         TextButton(
+        TextButton(
           onPressed: onpressed,
-          child: Text(
+          child: const Text(
             'See all',
             style: TextStyle(
               fontSize: 18,

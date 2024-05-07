@@ -46,7 +46,7 @@ class SheoStatusScreen extends StatelessWidget {
           itemCount: isPopular ? data.length : newArrival.length,
           itemBuilder: (context, index) {
             return ChangeNotifierProvider.value(
-              value: data[index],
+              value: isPopular ? data[index] : newArrival[index],
               child: GestureDetector(
                 onTap: () => Navigator.pushReplacement(
                     context,
@@ -59,13 +59,13 @@ class SheoStatusScreen extends StatelessWidget {
                   padding: const EdgeInsets.all(8.0),
                   child: ShoeContainerWidget(
                     isGrid: true,
-                    shoeImageUrl: isPopular
-                        ? data[index].imageUrl
-                        : newArrival[index].imageUrl,
-                    shoeBrand:
-                        isPopular ? data[index].model : newArrival[index].model,
-                    shoePrice:
-                        isPopular ? data[index].price : newArrival[index].price,
+                    // shoeImageUrl: isPopular
+                    //     ? data[index].imageUrl
+                    //     : newArrival[index].imageUrl,
+                    // shoeBrand:
+                    //     isPopular ? data[index].model : newArrival[index].model,
+                    // shoePrice:
+                    //     isPopular ? data[index].price : newArrival[index].price,
                   ),
                 ),
               ),
