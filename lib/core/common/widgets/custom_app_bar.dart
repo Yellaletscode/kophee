@@ -31,7 +31,7 @@ class CustomAppBar extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            needsADrawer ? Drawer() :
+            
             AppBarIconBtnWidget(
               icon: leadingIcon,
               left: 10,

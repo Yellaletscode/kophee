@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kophee/feature/screens/widgets/appbar_title_widget.dart';
 import 'package:kophee/feature/screens/widgets/custom_carousel.dart';
 import 'package:kophee/models/product_data_model.dart';
 import '/core/constants/constants.dart';
@@ -41,14 +42,24 @@ class _HomeScreenState extends State<HomeScreen> {
       backgroundColor: Constants.scaffoldBackgroundColor,
       appBar: PreferredSize(
         preferredSize: Size(MediaQuery.of(context).size.width, 50),
-        child: CustomAppBar(
-          mainTitle: 'Jigjiga, Ethiopia',
-          isSubtitle: true,
-          icon: Icons.shopping_bag,
-          onMenuPressed: () => print('menu'),
-          onPressed: () {},
+        child: AppBar(
+          centerTitle: true,
+          titleSpacing: 1.3,
+          title: const AppbarTitleWidget(
+            isThereSubTitle: true,
+            mainTitle: 'Jigjiga, Ethiopia',
+            
+          ),
         ),
+        //child: CustomAppBar(
+        //   mainTitle: 'Jigjiga, Ethiopia',
+        //   isSubtitle: true,
+        //   icon: Icons.shopping_bag,
+        //   onMenuPressed: () => print('menu'),
+        //   onPressed: () {},
+        // ),
       ),
+      drawer: Drawer(),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: SingleChildScrollView(

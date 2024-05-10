@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:kophee/core/constants/constants.dart';
 import 'package:kophee/core/common/widgets/custom_app_bar.dart';
+
 import 'widgets/profile_info_container.dart';
 
 class ProfileScreen extends StatelessWidget {
@@ -79,7 +80,7 @@ class ProfileScreen extends StatelessWidget {
             const ProfileInfoContainer(
               profileInfo: 'abenigena@gmail.com',
             ),
-            Spacer(),
+            const Spacer(),
           ],
         ),
       ),
