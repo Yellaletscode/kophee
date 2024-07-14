@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:kophee/core/constants/constants.dart';
 import 'package:kophee/data/products.dart';
 import 'package:kophee/feature/screens/cart_screen.dart';
@@ -7,6 +6,7 @@ import 'package:kophee/feature/screens/widgets/Common_text.dart';
 import 'package:kophee/core/common/widgets/custom_app_bar.dart';
 import 'package:kophee/models/product_data_model.dart';
 import 'package:kophee/providers/cart_provider.dart';
+import 'package:kophee/providers/product_provider.dart';
 import 'package:provider/provider.dart';
 
 class ShoeDetail extends StatefulWidget {
@@ -45,6 +45,7 @@ class _ShoeDetailState extends State<ShoeDetail> {
 
   @override
   Widget build(BuildContext context) {
+
     final screenSize = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: Constants.scaffoldBackgroundColor,
@@ -57,28 +58,31 @@ class _ShoeDetailState extends State<ShoeDetail> {
           onPressed: () {},
         ),
       ),
-      body: Column(
-        children: [
-          Container(
-            padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 25),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Center(
-                  child: Image.asset(
-                    widget.product.imageUrl,
-                    width: MediaQuery.of(context).size.width * 0.55,
+      body: SingleChildScrollView(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 25),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Center(
+                    child: Image.asset(
+                      widget.product.imageUrl,
+                      width: MediaQuery.of(context).size.width * 0.55,
+                    ),
                   ),
-                ),
-                Image.asset(Constants.circle, width: screenSize.width),
-              ],
+                  Image.asset(Constants.circle, width: screenSize.width),
+                ],
+              ),
             ),
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          Expanded(
-            child: Container(
+            const SizedBox(
+              height: 10,
+            ),
+            // removed expanded and replaced it with flexible widget
+            Container(
               padding: const EdgeInsets.symmetric(
                 horizontal: 10,
                 vertical: 25,
@@ -91,6 +95,7 @@ class _ShoeDetailState extends State<ShoeDetail> {
                     topRight: Radius.circular(30)),
               ),
               child: Column(
+                mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const CommonText(),
@@ -159,10 +164,12 @@ class _ShoeDetailState extends State<ShoeDetail> {
                   ),
                   Constants.verticalSpace2,
                   Flexible(
+                    fit: FlexFit.loose,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Column(
+                          mainAxisSize: MainAxisSize.min,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             const Text(
@@ -185,9 +192,14 @@ class _ShoeDetailState extends State<ShoeDetail> {
                             Provider.of<CartProvider>(context, listen: false)
                                 .addProductToCart(widget.product);
                             Navigator.pushReplacement(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) =>  CartScreen(selectedSize: selectedSize, shoeId: widget.product.id,),),);
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => CartScreen(
+                                  selectedSize: selectedSize,
+                                  shoeId: widget.product.id,
+                                ),
+                              ),
+                            );
                           },
                           child: Container(
                             padding: const EdgeInsets.symmetric(
@@ -212,8 +224,8 @@ class _ShoeDetailState extends State<ShoeDetail> {
                 ],
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

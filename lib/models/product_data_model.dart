@@ -4,10 +4,10 @@ class ProductDataModel extends ChangeNotifier {
   final int id;
   final String title;
   final String model;
-  final String color;
-  final double price;
+  final List color;
+  final dynamic price;
   final String imageUrl;
-  final List<int> sizes;
+  final List sizes;
   bool isFavourite;
   final bool isNewArrival;
   final String description;

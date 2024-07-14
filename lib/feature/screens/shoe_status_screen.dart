@@ -55,17 +55,19 @@ class SheoStatusScreen extends StatelessWidget {
                               product:
                                   isPopular ? data[index] : newArrival[index],
                             ))),
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: ShoeContainerWidget(
-                    isGrid: true,
-                    // shoeImageUrl: isPopular
-                    //     ? data[index].imageUrl
-                    //     : newArrival[index].imageUrl,
-                    // shoeBrand:
-                    //     isPopular ? data[index].model : newArrival[index].model,
-                    // shoePrice:
-                    //     isPopular ? data[index].price : newArrival[index].price,
+                child: const Padding(
+                  padding:  EdgeInsets.all(8.0),
+                  child: ClipRect(
+                    child: ShoeContainerWidget(
+                      isGrid: true,
+                      // shoeImageUrl: isPopular
+                      //     ? data[index].imageUrl
+                      //     : newArrival[index].imageUrl,
+                      // shoeBrand:
+                      //     isPopular ? data[index].model : newArrival[index].model,
+                      // shoePrice:
+                      //     isPopular ? data[index].price : newArrival[index].price,
+                    ),
                   ),
                 ),
               ),

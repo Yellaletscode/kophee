@@ -7,7 +7,17 @@ class Constants {
   static const nikeshoe4 = 'assets/images/nike-4.png';
   static const nikeshoe5 = 'assets/images/nike-4.png';
 
+// BRANDS
+  static const brand1 = 'assets/images/brands/brand1.png';
+  static const brand2 = 'assets/images/brands/brand2.png';
+  static const brand3 = 'assets/images/brands/brand3.png';
+  static const brand4 = 'assets/images/brands/brand4.png';
+  static const brand5 = 'assets/images/brands/brand5.png';
+  static const brand6 = 'assets/images/brands/brand6.png';
+  static const brand7 = 'assets/images/brands/Vector(2).png';
+
 // NIKE SHOES
+
   static const nike1 = 'assets/images/nike/nike1.png';
   static const nike2 = 'assets/images/nike/nike2.png';
   static const nike3 = 'assets/images/nike/nike3.png';
@@ -19,14 +29,11 @@ class Constants {
   static const nike9 = 'assets/images/nike/nike9.png';
 
   // JORDAN SHOES
-
   static const jordan1 = 'assets/images/jordan/jordan1.png';
   static const jordan2 = 'assets/images/jordan/jordan2.png';
   static const jordan3 = 'assets/images/jordan/jordan3.png';
   static const jordan4 = 'assets/images/jordan/jordan4.png';
   static const jordan5 = 'assets/images/jordan/jordan5.png';
-
-  // PUMA SHOES
 
   static const puma1 = 'assets/images/puma/puma1.png';
   static const puma2 = 'assets/images/puma/puma2.png';
@@ -35,15 +42,6 @@ class Constants {
   static const puma5 = 'assets/images/puma/puma5.png';
   static const puma6 = 'assets/images/puma/puma6.png';
   static const puma7 = 'assets/images/puma/puma7.png';
-
-// BRANDS
-  static const brand1 = 'assets/images/brands/brand1.png';
-  static const brand2 = 'assets/images/brands/brand2.png';
-  static const brand3 = 'assets/images/brands/brand3.png';
-  static const brand4 = 'assets/images/brands/brand4.png';
-  static const brand5 = 'assets/images/brands/brand5.png';
-  static const brand6 = 'assets/images/brands/brand6.png';
-  static const brand7 = 'assets/images/brands/Vector(2).png';
 
   static const user = 'assets/images/user.png';
   static const circle = 'assets/images/bottomCircle.png';

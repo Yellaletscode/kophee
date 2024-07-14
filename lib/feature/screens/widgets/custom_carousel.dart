@@ -23,10 +23,8 @@ class _CustomeCarouselSlidderState extends State<CustomeCarouselSlidder> {
   final PageController _pageController = PageController(initialPage: 0);
 
   void startTimer() {
-
     _timer = Timer.periodic(const Duration(seconds: 5), (timer) {
       if (_pageController.page == newShoes.length - 1) {
-
         _pageController.animateToPage(
           0,
           duration: const Duration(
@@ -35,7 +33,6 @@ class _CustomeCarouselSlidderState extends State<CustomeCarouselSlidder> {
           curve: Curves.easeInOut,
         );
       } else {
-
         _pageController.nextPage(
           duration: const Duration(
             milliseconds: 500,
@@ -67,7 +64,6 @@ class _CustomeCarouselSlidderState extends State<CustomeCarouselSlidder> {
 
   @override
   Widget build(BuildContext context) {
-
     return Stack(
       children: [
         SizedBox(
@@ -83,7 +79,7 @@ class _CustomeCarouselSlidderState extends State<CustomeCarouselSlidder> {
               return ShoesBanner(
                 shoeModel: newShoes[index].model,
                 imageUrl: newShoes[index].imageUrl,
-                price: newShoes[index].price,
+                price: newShoes[index].price.toDouble(),
               );
             },
           ),
@@ -100,7 +96,6 @@ class _CustomeCarouselSlidderState extends State<CustomeCarouselSlidder> {
               children: List<Widget>.generate(
                 newShoes.length,
                 (index) {
-                  
                   return Padding(
                     padding: const EdgeInsets.all(2),
                     child: InkWell(

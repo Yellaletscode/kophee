@@ -62,7 +62,6 @@ class _FavouriteScreenState extends State<FavouriteScreen> {
           crossAxisCount: 2,
           mainAxisExtent: 250,
           
- 
         ),
       ),
     );
